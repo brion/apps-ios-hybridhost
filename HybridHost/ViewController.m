@@ -39,9 +39,11 @@
 #pragma mark Toolbar button handlers
 
 - (IBAction)backButtonPushed:(id)sender {
+    [self.webView goBack];
 }
 
 - (IBAction)forwardButtonPushed:(id)sender {
+    [self.webView goForward];
 }
 
 - (IBAction)languageButtonPushed:(id)sender {
