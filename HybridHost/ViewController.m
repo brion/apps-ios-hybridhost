@@ -31,9 +31,11 @@
 #pragma mark Navbar button handlers
 
 - (IBAction)menuButtonPushed:(id)sender {
+    [self clickElementBySelector:@"#mw-mf-main-menu-button"];
 }
 
 - (IBAction)searchButtonPushed:(id)sender {
+    [self clickElementBySelector:@"#searchInput"];
 }
 
 #pragma mark Toolbar button handlers
@@ -47,6 +49,7 @@
 }
 
 - (IBAction)languageButtonPushed:(id)sender {
+    [self clickElementBySelector:@"button.languageSelector"];
 }
 
 - (IBAction)actionButtonPushed:(id)sender {
@@ -117,6 +120,28 @@
 - (void)openURLInExternalBrowser:(NSURL *)url {
     // FIXME add other browser support
     [UIApplication.sharedApplication openURL:url];
+}
+
+- (BOOL)clickElementBySelector:(NSString *)sel {
+    return [self callElementBySelector:sel method:@"click"];
+}
+
+- (BOOL)focusElementBySelector:(NSString *)sel {
+    return [self callElementBySelector:sel method:@"focus"];
+}
+
+- (BOOL)callElementBySelector:(NSString *)sel method:(NSString *)method {
+    // FIXME escape string
+    NSString *js = [NSString stringWithFormat:@"document.querySelector(\"%@\").%@();", sel, method];
+    return [self runJavaScript:js];
+}
+
+- (BOOL)runJavaScript:(NSString *)js {
+    NSString *wrapper = [NSString stringWithFormat:@"(function() {\ntry {\nreturn (function() {\n%@\n})();\n}\ncatch(e) {\nreturn 'error:' + e;\n}\n})()\n", js];
+    NSLog(@"Running JS: %@", wrapper);
+    NSString *result = [self.webView stringByEvaluatingJavaScriptFromString:wrapper];
+    NSLog(@"JS result: %@", result);
+    return YES;
 }
 
 @end
