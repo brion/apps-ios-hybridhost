@@ -1,23 +1,138 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wv9-pl-MUS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller - Hybrid Host Test-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUZ-If-Mx8">
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="qZ3-wA-IXZ"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IUZ-If-Mx8" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="PNF-XV-Svr"/>
+                            <constraint firstItem="IUZ-If-Mx8" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="QjF-bi-dhB"/>
+                            <constraint firstItem="IUZ-If-Mx8" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="RNo-t8-aAK"/>
+                            <constraint firstItem="IUZ-If-Mx8" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="l9X-3I-3DQ"/>
+                        </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" style="plain" systemItem="rewind" id="12H-vm-FvC">
+                            <connections>
+                                <action selector="backButtonPushed:" destination="2" id="aMH-h1-MWF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="o4K-q2-jAr"/>
+                        <barButtonItem style="plain" systemItem="fastForward" id="1dK-zw-ctQ">
+                            <connections>
+                                <action selector="forwardButtonPushed:" destination="2" id="6Ce-TN-ntX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Ady-XN-YNi"/>
+                        <barButtonItem title="Aあ" style="plain" id="7gz-WA-Fdw">
+                            <connections>
+                                <action selector="languageButtonPushed:" destination="2" id="jIA-MB-3SW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ASX-jE-JA2"/>
+                        <barButtonItem style="plain" systemItem="action" id="Oam-3G-uN4">
+                            <connections>
+                                <action selector="actionButtonPushed:" destination="2" id="U8j-6L-abQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Qe2-NH-WAt"/>
+                        <barButtonItem title="Item" style="plain" systemItem="bookmarks" id="Uo0-zi-qC8">
+                            <connections>
+                                <action selector="bookmarkButtonPushed:" destination="2" id="XGX-me-3qJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Hybrid Host Test" id="XHJ-gi-Grq">
+                        <barButtonItem key="leftBarButtonItem" title="三" style="plain" id="wPF-yG-0as">
+                            <connections>
+                                <action selector="menuButtonPushed:" destination="2" id="zD0-Bq-yO5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="zpQ-SM-l42">
+                            <connections>
+                                <action selector="searchButtonPushed:" destination="2" id="2us-LJ-VeT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="actionButton" destination="Oam-3G-uN4" id="RwX-1d-3HC"/>
+                        <outlet property="backButton" destination="12H-vm-FvC" id="FQV-zN-qvp"/>
+                        <outlet property="bookmarkButton" destination="Uo0-zi-qC8" id="c9E-r8-kWd"/>
+                        <outlet property="forwardButton" destination="1dK-zw-ctQ" id="Uoh-l9-wrJ"/>
+                        <outlet property="languageButton" destination="7gz-WA-Fdw" id="1Kd-8m-ptG"/>
+                        <outlet property="menuButton" destination="wPF-yG-0as" id="paD-7d-sby"/>
+                        <outlet property="searchButton" destination="zpQ-SM-l42" id="mhg-M6-D2U"/>
+                        <outlet property="webView" destination="IUZ-If-Mx8" id="4JY-xi-p9U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="462" y="136"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JG1-ae-TO8">
+            <objects>
+                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="wv9-pl-MUS" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="NPT-tG-sl3">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="SvW-E0-avW">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="yNj-AJ-F2m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tBq-Ug-EaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="136"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="actionButtonPushed:"/>
+                <relationship kind="action" name="backButtonPushed:"/>
+                <relationship kind="action" name="bookmarkButtonPushed:"/>
+                <relationship kind="action" name="forwardButtonPushed:"/>
+                <relationship kind="action" name="languageButtonPushed:"/>
+                <relationship kind="action" name="menuButtonPushed:"/>
+                <relationship kind="action" name="searchButtonPushed:"/>
+                <relationship kind="outlet" name="actionButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="bookmarkButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="forwardButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="languageButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="menuButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
