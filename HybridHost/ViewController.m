@@ -58,9 +58,12 @@
 #pragma mark UIWebViewDelegate methods
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    // FIXME check if we should pass off to an external browser
-    // or internal native module
-    return YES;
+    if ([self isWikipediaURL:request.URL]) {
+        return YES;
+    } else {
+        [self openURLInExternalBrowser:request.URL];
+        return NO;
+    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -87,5 +90,33 @@
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
+- (BOOL)isWikipediaURL:(NSURL *)url {
+    if ([url.host isEqualToString:@"login.wikimedia.org"]) {
+        return YES;
+    }
+    NSArray *domainChunks = [url.host componentsSeparatedByString:@"."];
+    NSUInteger chunks = domainChunks.count;
+    if (chunks < 3) {
+        return NO;
+    }
+    NSString *top = domainChunks[chunks - 1];
+    NSString *domain = domainChunks[chunks - 2];
+    NSString *subdomain = domainChunks[chunks - 3];
+    if (![top isEqualToString:@"org"]) {
+        return NO;
+    }
+    if (![domain isEqualToString:@"wikipedia"]) {
+        return NO;
+    }
+    if (![subdomain isEqualToString:@"m"]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)openURLInExternalBrowser:(NSURL *)url {
+    // FIXME add other browser support
+    [UIApplication.sharedApplication openURL:url];
+}
 
 @end
