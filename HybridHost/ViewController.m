@@ -18,7 +18,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+
+    // Allow programatically triggering search UI in web view
+    self.webView.keyboardDisplayRequiresUserAction = NO;
+
     [self loadFirstPage];
 }
 
@@ -35,7 +38,7 @@
 }
 
 - (IBAction)searchButtonPushed:(id)sender {
-    [self clickElementBySelector:@"#searchInput"];
+    [self focusElementBySelector:@"#searchInput"];
 }
 
 #pragma mark Toolbar button handlers
